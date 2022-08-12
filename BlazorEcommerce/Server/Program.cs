@@ -12,6 +12,9 @@ builder.Services.AddRazorPages();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Services, using DI. Inject product service here. Adhering to open/closed principle here.
+builder.Services.AddScoped<IProductService, ProductService>();
+
 var app = builder.Build();
 
 app.UseSwaggerUI();
