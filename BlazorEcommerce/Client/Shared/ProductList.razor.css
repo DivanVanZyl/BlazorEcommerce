@@ -19,10 +19,6 @@
     width: 200px;
     text-align: center;
 }
-.price {
-    color: green;
-}
-
 @media (max-width: 1021.98px) {
     .media {
         flex-direction: column;

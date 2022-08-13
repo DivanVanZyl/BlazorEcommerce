@@ -1,6 +1,6 @@
 ﻿@inject IProductService ProductService
 
-@if(ProductService.Products is null || ProductService.Products.Count == 0)
+@if (ProductService.Products is null || ProductService.Products.Count == 0)
 {
     <span>Loading Products...</span>
 }
@@ -11,18 +11,20 @@ else
         {
             <li class="media my-3">
                 <div class="media-img-wrapper mr-2">
-                    <img class="media-img" src="@product.ImageUrl" alt="@product.Title">
+                    <a href="/product/@product.Id">
+                        <img class="media-img" src="@product.ImageUrl" alt="@product.Title">
+                    </a>
                 </div>
                 <div class="media-body">
-                    <a href="#">
-                    <h4 class="mb-0">@product.Title</h4>
+                    <a href="/product/@product.Id">
+                        <h4 class="mb-0">@product.Title</h4>
                     </a>
                     <p>@product.Description</p>
                     <h5 class="price">$@product.Price</h5>
                 </div>
             </li>
         }
-    </ul>    
+    </ul>
 }
 
 
