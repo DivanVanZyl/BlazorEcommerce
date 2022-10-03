@@ -9,6 +9,22 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<ProductVariant>()
+                .HasKey(p => new { p.ProductId, p.ProductTypeId });
+
+            modelBuilder.Entity<ProductType>().HasData(
+                   new ProductType { Id = 1, Name = "Default" },
+                   new ProductType { Id = 2, Name = "Paperback" },
+                   new ProductType { Id = 3, Name = "E-Book" },
+                   new ProductType { Id = 4, Name = "Audiobook" },
+                   new ProductType { Id = 5, Name = "Stream" },
+                   new ProductType { Id = 6, Name = "Blu-ray" },
+                   new ProductType { Id = 7, Name = "VHS" },
+                   new ProductType { Id = 8, Name = "PC" },
+                   new ProductType { Id = 9, Name = "PlayStation" },
+                   new ProductType { Id = 10, Name = "Xbox" }
+               );
+
             modelBuilder.Entity<Category>().HasData(
                 new Category
                 {
@@ -36,7 +52,6 @@
                     Title = "The Cuckoo's Egg 🐒",
                     Description = "The Cuckoo's Egg: Tracking a Spy Through the Maze of Computer Espionage is a 1989 book written by Clifford Stoll. It is his first-person account of the hunt for a computer hacker who broke into a computer at the Lawrence Berkeley National Laboratory (LBNL).",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/28/The_Cuckoo%27s_Egg.jpg",
-                    Price = 9.99m,
                     CategoryId = 1
                 },
                 new Product
@@ -45,7 +60,6 @@
                     Title = "Don Quixote",
                     Description = "Don Quixote (/ˌdɒn kiːˈhoʊti/, also US: /-teɪ/)[1] is a Spanish epic novel by Miguel de Cervantes. Originally published in two parts, in 1605 and 1615, its full title is The Ingenious Gentleman Don Quixote of La Mancha or, in Spanish, El ingenioso hidalgo (or caballero, in Part 2) don Quijote de la Mancha.[a] A founding work of Western literature, it is often labelled as the first modern novel[2][3] and one of the greatest works ever written.[4][5] Don Quixote is also one of the most-translated books in the world.[6]",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Title_page_first_edition_Don_Quijote.jpg/375px-Title_page_first_edition_Don_Quijote.jpg",
-                    Price = 19.99m,
                     CategoryId = 1
                 },
                 new Product
@@ -54,7 +68,6 @@
                     Title = "Down and Out in Paris and London",
                     Description = "Down and Out in Paris and London is the first full-length work by the English author George Orwell, published in 1933. It is a memoir[2] in two parts on the theme of poverty in the two cities. Its target audience was the middle- and upper-class members of society—those who were more likely to be well educated—and exposes the poverty existing in two prosperous cities: Paris and London. The first part is an account of living in near-extreme poverty destitution in Paris and the experience of casual labour in restaurant kitchens. The second part is a travelogue of life on the road in and around London from the tramp's perspective, with descriptions of the types of hostel accommodation available and some of the characters to be found living on the margins.",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/en/0/06/Downout_paris_london.jpg",
-                    Price = 29.99m,
                     CategoryId = 1
                 },
                 new Product
@@ -125,9 +138,124 @@
                     Description = "The Super Nintendo Entertainment System (SNES), also known as the Super NES or Super Nintendo, is a 16-bit home video game console developed by Nintendo that was released in 1990 in Japan and South Korea.",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/e/ee/Nintendo-Super-Famicom-Set-FL.jpg",
                 });
+
+            modelBuilder.Entity<ProductVariant>().HasData(
+               new ProductVariant
+               {
+                   ProductId = 1,
+                   ProductTypeId = 2,
+                   Price = 9.99m,
+                   OriginalPrice = 19.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 1,
+                   ProductTypeId = 3,
+                   Price = 7.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 1,
+                   ProductTypeId = 4,
+                   Price = 19.99m,
+                   OriginalPrice = 29.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 2,
+                   ProductTypeId = 2,
+                   Price = 7.99m,
+                   OriginalPrice = 14.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 3,
+                   ProductTypeId = 2,
+                   Price = 6.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 4,
+                   ProductTypeId = 5,
+                   Price = 3.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 4,
+                   ProductTypeId = 6,
+                   Price = 9.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 4,
+                   ProductTypeId = 7,
+                   Price = 19.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 5,
+                   ProductTypeId = 5,
+                   Price = 3.99m,
+               },
+               new ProductVariant
+               {
+                   ProductId = 6,
+                   ProductTypeId = 5,
+                   Price = 2.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 7,
+                   ProductTypeId = 8,
+                   Price = 19.99m,
+                   OriginalPrice = 29.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 7,
+                   ProductTypeId = 9,
+                   Price = 69.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 7,
+                   ProductTypeId = 10,
+                   Price = 49.99m,
+                   OriginalPrice = 59.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 8,
+                   ProductTypeId = 8,
+                   Price = 9.99m,
+                   OriginalPrice = 24.99m,
+               },
+               new ProductVariant
+               {
+                   ProductId = 9,
+                   ProductTypeId = 8,
+                   Price = 14.99m
+               },
+               new ProductVariant
+               {
+                   ProductId = 10,
+                   ProductTypeId = 1,
+                   Price = 159.99m,
+                   OriginalPrice = 299m
+               },
+               new ProductVariant
+               {
+                   ProductId = 11,
+                   ProductTypeId = 1,
+                   Price = 79.99m,
+                   OriginalPrice = 399m
+               }
+           );
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<ProductVariant> ProductVariants { get; set; }
     }
 }
