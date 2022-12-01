@@ -22,7 +22,7 @@ else
                     </a>
                     <p>@product.Description</p>
                     <h5 class="price"></h5>
-                        @*$@product.Price*@
+                        @GetPriceText(product)
                 </div>
             </li>
         }
@@ -39,5 +39,18 @@ else
     public void Dispose()
     {
         ProductService.ProductsChanged -= StateHasChanged;
+    }
+
+    private string GetPriceText(Product product)
+    {
+        var variants = product.Variants;
+        if(variants.Count != 0)
+        {
+            return $"Starting at ${variants.Min(v => v.Price)}";
+        }
+        else
+        {
+            return string.Empty;
+        }        
     }
 }
