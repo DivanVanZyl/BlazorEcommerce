@@ -14,8 +14,29 @@ else
         <div class="media-body">
             <h2 class="mb-0">@product.Title</h2>
             <p>@product.Description</p>
-            <h4 class="price"></h4>
-                @*$@product.Price*@
+            @if(product.Variants != null && product.Variants.Count > 1)
+            {
+                <div class="mb-3">
+                    <select class="form-select" @bind="currentTypeId">
+                        @foreach(var variant in product.Variants)
+                        {
+                            <option value="@variant.ProductTypeId">@variant.ProductType.Name</option>
+                        }
+                    </select>
+                    </div>
+            }
+            @if(GetSelectedVariant() != null)
+            {
+                @if(GetSelectedVariant().OriginalPrice > GetSelectedVariant().Price)
+                {
+                    <h6 class="text-muted original-price">
+                        $@GetSelectedVariant().OriginalPrice
+                    </h6>
+                }
+            }
+            <h4 class="price">
+                $@GetSelectedVariant().Price
+            </h4>
         </div>
     </div>
 }
@@ -23,6 +44,7 @@ else
 @code {
     private Product? product = null;
     private string message = string.Empty;
+    private int currentTypeId = 1;
 
     [Parameter]
     public int Id { get; set; }
@@ -34,11 +56,20 @@ else
         if(result.Success)
         {
             product = result.Data;
+            if(product.Variants.Count > 0)
+            {
+                currentTypeId = product.Variants.Where(x => x.Price == product.Variants.Min(x => x.Price))
+                                                   .Select(y => y.ProductTypeId).First();
+            }
         }
         else
         {
             message = result.Message;
         }
+    }
+    private ProductVariant GetSelectedVariant()
+    {
+        return product.Variants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
     }
 
 }
