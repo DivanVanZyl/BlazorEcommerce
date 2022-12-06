@@ -32,7 +32,7 @@
 
         public async Task<List<string>> GetProductSearchSuggestions(string searchText)
         {
-            var result = await _http.GetFromJsonAsync<ServiceResponse<List<string>>>($"api/product/searchsuggestions/{searchText}");
+            var result = await _http.GetFromJsonAsync<ServiceResponse<List<string>>>($"api/product/searchsuggestion/{searchText}");
             return result.Data;
         }
 
