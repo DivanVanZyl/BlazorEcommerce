@@ -52,7 +52,8 @@
                     Title = "The Cuckoo's Egg 🐒",
                     Description = "The Cuckoo's Egg: Tracking a Spy Through the Maze of Computer Espionage is a 1989 book written by Clifford Stoll. It is his first-person account of the hunt for a computer hacker who broke into a computer at the Lawrence Berkeley National Laboratory (LBNL).",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/en/2/28/The_Cuckoo%27s_Egg.jpg",
-                    CategoryId = 1
+                    CategoryId = 1,
+                    Featured=true
                 },
                 new Product
                 {
@@ -85,7 +86,7 @@
                     Title = "Back to the Future",
                     Description = "Back to the Future is a 1985 American science fiction film directed by Robert Zemeckis. Written by Zemeckis and Bob Gale, it stars Michael J. Fox, Christopher Lloyd, Lea Thompson, Crispin Glover, and Thomas F. Wilson. Set in 1985, the story follows Marty McFly (Fox), a teenager accidentally sent back to 1955 in a time-traveling DeLorean automobile built by his eccentric scientist friend Doctor Emmett \"Doc\" Brown (Lloyd). Trapped in the past, Marty inadvertently prevents his future parents' meeting—threatening his very existence—and is forced to reconcile the pair and somehow get back to the future.",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/en/d/d2/Back_to_the_Future.jpg",
-                    //Featured = true
+                    Featured = true
                 },
                 new Product
                 {
@@ -120,7 +121,7 @@
                     Title = "Day of the Tentacle",
                     Description = "Day of the Tentacle, also known as Maniac Mansion II: Day of the Tentacle, is a 1993 graphic adventure game developed and published by LucasArts. It is the sequel to the 1987 game Maniac Mansion.",
                     ImageUrl = "https://upload.wikimedia.org/wikipedia/en/7/79/Day_of_the_Tentacle_artwork.jpg",
-                    //Featured = true
+                    Featured = true
                 },
                 new Product
                 {
