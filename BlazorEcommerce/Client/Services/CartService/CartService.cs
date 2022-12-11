@@ -19,6 +19,7 @@ namespace BlazorEcommerce.Client.Services.CartService
                 cart = new List<CartItem>();
             }
             cart.Add(cartItem);
+
             await _localStorage.SetItemAsync("cart", cart);
             OnChange.Invoke();
         }

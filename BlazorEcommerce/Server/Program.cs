@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 //Services, using DI. Inject product service here. Adhering to open/closed principle here.
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+builder.Services.AddScoped<ICartService, CartService>();
 
 var app = builder.Build();
 
