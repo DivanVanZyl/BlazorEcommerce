@@ -1,7 +1,8 @@
 ﻿@page "/product/{id:int}"
 @inject IProductService ProductService
+@inject ICartService CartService
 
-@if(product is null)
+@if (product is null)
 {
     <span>@message</span>
 }
@@ -14,29 +15,32 @@ else
         <div class="media-body">
             <h2 class="mb-0">@product.Title</h2>
             <p>@product.Description</p>
-            @if(product.Variants != null && product.Variants.Count > 1)
+            @if (product.Variants != null && product.Variants.Count > 1)
             {
                 <div class="mb-3">
                     <select class="form-select" @bind="currentTypeId">
-                        @foreach(var variant in product.Variants)
+                        @foreach (var variant in product.Variants)
                         {
                             <option value="@variant.ProductTypeId">@variant.ProductType.Name</option>
                         }
                     </select>
-                    </div>
+                </div>
             }
-            @if(GetSelectedVariant() != null)
+            @if (GetSelectedVariant() != null)
             {
-                @if(GetSelectedVariant().OriginalPrice > GetSelectedVariant().Price)
+                @if (GetSelectedVariant().OriginalPrice > GetSelectedVariant().Price)
                 {
                     <h6 class="text-muted original-price">
                         $@GetSelectedVariant().OriginalPrice
                     </h6>
                 }
+                <h4 class="price">
+                    $@GetSelectedVariant().Price
+                </h4>
             }
-            <h4 class="price">
-                $@GetSelectedVariant().Price
-            </h4>
+            <button class="btn btn-primary" @onclick="AddToCart">
+                <i class="oi oi-cart"></i>&nbsp;&nbsp;&nbsp;Add to Cart
+            </button>
         </div>
     </div>
 }
@@ -53,10 +57,10 @@ else
         message = "Loading product...";
 
         var result = await ProductService.GetProduct(Id);
-        if(result.Success)
+        if (result.Success)
         {
             product = result.Data;
-            if(product.Variants.Count > 0)
+            if (product.Variants.Count > 0)
             {
                 currentTypeId = product.Variants.Where(x => x.Price == product.Variants.Min(x => x.Price))
                                                    .Select(y => y.ProductTypeId).First();
@@ -71,5 +75,14 @@ else
     {
         return product.Variants.FirstOrDefault(v => v.ProductTypeId == currentTypeId);
     }
-
+    private async Task AddToCart()
+    {
+        var productVariant = GetSelectedVariant();
+        var cartItem = new CartItem
+            {
+                ProductId = productVariant.ProductId,
+                ProductTypeId = productVariant.ProductTypeId
+            };
+            await CartService.AddToCart(cartItem);
+    }
 }

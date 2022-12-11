@@ -1,3 +1,5 @@
+using BlazorEcommerce.Server.Services.CartService;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
