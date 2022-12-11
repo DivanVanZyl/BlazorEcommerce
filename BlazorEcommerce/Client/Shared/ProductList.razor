@@ -24,11 +24,18 @@ else
                     <h5 class="price">
                         @GetPriceText(product)
                     </h5>
-                        
+
                 </div>
             </li>
         }
     </ul>
+    for (var i = 1; i <= ProductService.PageCount; i++)
+    {
+        <a class="btn
+                    @(i == ProductService.CurrentPage ? "btn-info" :"btn-outline-info")
+            page-selection"
+   href="/search/@ProductService.LastSearchText/@i">@i</a>
+    }
 }
 
 
@@ -46,13 +53,13 @@ else
     private string GetPriceText(Product product)
     {
         var variants = product.Variants;
-        if(variants.Count != 0)
+        if (variants.Count != 0)
         {
             return $"Starting at ${variants.Min(v => v.Price)}";
         }
         else
         {
             return string.Empty;
-        }        
+        }
     }
 }
