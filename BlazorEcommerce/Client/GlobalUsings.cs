@@ -6,3 +6,4 @@ global using BlazorEcommerce.Client.Services.CategoryService;
 global using BlazorEcommerce.Client.Services.CartService;
 global using BlazorEcommerce.Shared;
 global using BlazorEcommerce.Client.Services.AuthService;
+global using Microsoft.AspNetCore.Components.Authorization;
