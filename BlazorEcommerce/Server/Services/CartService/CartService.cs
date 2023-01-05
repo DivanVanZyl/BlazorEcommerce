@@ -48,5 +48,16 @@
             }
             return result;
         }
+
+        public async Task<ServiceResponse<List<CartProductResponseDto>>> StoreCartItems(List<CartItem> cartItems, int userId)
+        {
+            cartItems.ForEach(cartItem => cartItem.UserId = userId);
+            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
+            return await GetCartProducts(
+                await _context.CartItems
+                .Where(ci => ci.UserId == userId).ToListAsync());
+        }
     }
 }
