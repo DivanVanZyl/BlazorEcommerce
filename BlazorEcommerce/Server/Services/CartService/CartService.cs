@@ -63,7 +63,7 @@ namespace BlazorEcommerce.Server.Services.CartService
 
             return await GetCartProducts(
                 await _context.CartItems
-                .Where(ci => ci.UserId == userId).ToListAsync());
+                .Where(ci => ci.UserId == GetUserId()).ToListAsync());
         }
     }
 }
