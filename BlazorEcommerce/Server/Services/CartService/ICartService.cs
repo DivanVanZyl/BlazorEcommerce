@@ -10,5 +10,6 @@ namespace BlazorEcommerce.Server.Services.CartService
         Task<ServiceResponse<List<CartProductResponseDto>>> GetDbCartProducts();
         Task<ServiceResponse<bool>> AddToCart(CartItem cartItem);
         Task<ServiceResponse<bool>> UpdateQuantity(CartItem cartItem);
+        Task<ServiceResponse<bool>> RemoveItemFromCart(int productId, int productTypeId);
     }
 }
