@@ -3,5 +3,6 @@
     public interface IOrderService
     {
         public Task PlaceOrder();
+        Task<List<OrderOverviewResponse>> GetOrders();
     }
 }
